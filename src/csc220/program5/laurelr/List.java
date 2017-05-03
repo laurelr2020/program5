@@ -5,7 +5,6 @@
                 List class.
  * Acknowledgements: To complete this project I had assistance from programming
  *                   consualtants and class examples.
- * Notes: In order to remove the GameCharacter the points have to be removed in order.
 */
 
 package csc220.program5.laurelr;
@@ -36,16 +35,6 @@ public class List<E> extends csc220.list.List<E> {
             if (!DEBUGGING)
                 return;
             System.out.print(s);
-            if (prevNode != null) {
-                //System.out.print(" --previous data = " + prevNode.data);
-            }
-            if (nextNode != null) {
-                //System.out.print("\nNEXT NODE -" + nextNode.data + "\nFIRST NODE -" + first.data + "\nPREV NODE -" + prevNode.data + "\nLAST NODE -" + last.data);   //100, 50 xy     
-            }
-            if( nextNode == null){
-                System.out.println(" it's null ");
-            }
-            System.out.println("");
         }
         
         @Override 
@@ -71,22 +60,24 @@ public class List<E> extends csc220.list.List<E> {
         @Override
         public void remove() {
             printNodes("(laurelr)Remove clicked");
-            Node<E> tmp = new Node<>();
-            while(tmp !=prevNode){
-                tmp = prevNode;   
+            Node<E> tmp ;
+            if(prevNode == null){
+                throw new Error("PrevNode is null");
             }
-            if(prevNode == nextNode){
+            if(prevNode == first){
+                first = nextNode;
+            }
+            else{
+                tmp = first;
+                while(tmp.next != prevNode){
+                    tmp = tmp.next;
+                }
                 tmp.next = nextNode;
-                prevNode = null;
             }
-            if(first == prevNode){
-                first = prevNode.next;
-                prevNode = null;
+            if(prevNode == last){
+                last = prevNode;
             }
-            if(last == prevNode){
-                last = nextNode;
-                prevNode = null;
-            }
+            prevNode = null;
         }
      }
    

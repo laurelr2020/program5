@@ -5,6 +5,7 @@
                 List class.
  * Acknowledgements: To complete this project I had assistance from programming
  *                   consualtants and class examples.
+ * Notes: In order to remove the GameCharacter the points have to be removed in order.
 */
 
 package csc220.program5.laurelr;
@@ -69,7 +70,7 @@ public class List<E> extends csc220.list.List<E> {
         
         @Override
         public void remove() {
-            printNodes("(laurelr)Remove under construction");
+            printNodes("(laurelr)Remove clicked");
             Node<E> tmp = new Node<>();
             while(tmp !=prevNode){
                 tmp = prevNode;   
